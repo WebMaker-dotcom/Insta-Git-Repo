@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gooey Nav – Stable</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: radial-gradient(circle at top, #020617, #000);
+
+      }
+      .nav{
+        background: #020617;
+        padding: 18px;
+        border-radius: 999px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+      }
+      .gooey{
+        position: relative;
+        display: flex;
+        gap: 12px;
+        padding: 6px ;
+        filter: contrast(25);
+      }
+      .indicator{
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        height: 48px;
+        width: 110px;
+        background: #38bdf8;
+        border-radius: 999px;
+        filter: blur(10px);
+        transition: left .45s cubic-bezier(.68, -0.55, .27, 1.55),
+        width.3s ease;
+        z-index: 1;
+      }
+      .tab{
+        position: relative;
+        z-index: 2;
+        border: none;
+        background: #020617;
+        color: #94a3b8;
+        padding: 14px 26px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 14px;
+        letter-spacing: .3px;
+      }
+      .top.active{
+        color: #020617;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <div class="gooey">
+        <div class="indicator"></div>
+
+        <button class="tab active">Home</button>
+        <button class="tab">Explore</button>
+        <button class="tab">Upload</button>
+        <button class="tab">Profile</button>
+      </div>
+    </nav>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab");
+      const indicator = document.querySelector(".indicator");
+      const gooey = document.querySelector(".gooey");
+
+      function move(tab) {
+        const tabRect = tab.getBoundingClientRect();
+        const gooRect = gooey.getBoundingClientRect();
+
+        indicator.style.width = tabRect.width + "px";
+        indicator.style.left = tabRect.left - gooRect.left + "px";
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          document.querySelector(".tab.active").classList.remove("active");
+          tab.classList.add("active");
+          move(tab);
+        });
+      });
+
+      /* INITIAL POSITION (THIS WAS MISSING BEFORE) */
+      window.addEventListener("load", () => {
+        move(document.querySelector(".tab.active"));
+      });
+    </script>
+  </body>
+</html>

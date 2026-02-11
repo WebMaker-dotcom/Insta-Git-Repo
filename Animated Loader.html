@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Liquid Loader</title>
+    <style>
+      :root {
+        --bg-color: #08080a;
+        --accent-color: #00f2ff;
+        --secondary-color: #7000ff;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--bg-color);
+        overflow: hidden;
+        font-family: "Inter", sans-serif;
+      }
+
+      .liquid-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        filter: url("#gooey");
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .blob {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          45deg,
+          var(--accent-color),
+          var(--secondary-color)
+        );
+        border-radius: 50%;
+        opacity: 0.8;
+      }
+
+      .blob.one {
+        animation: move-1 4s infinite ease-in-out;
+      }
+
+      .blob.two {
+        animation: move-2 4s infinite ease-in-out;
+        width: 60px;
+        height: 60px;
+      }
+
+      .blob.three {
+        animation: move-3 4s infinite ease-in-out;
+        width: 50px;
+        height: 50px;
+      }
+
+      .center-core {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 50%;
+        z-index: 10;
+        box-shadow: 0 0 30px var(--accent-color);
+      }
+
+      .ui-overlay {
+        position: absolute;
+        text-align: center;
+        z-index: 20;
+        pointer-events: none;
+      }
+
+      .count {
+        font-size: 1.2rem;
+        font-weight: 200;
+        color: #000;
+        letter-spacing: -1px;
+      }
+
+      @keyframes move-1 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(120px, 40px);
+        }
+        66% {
+          transform: translate(-80px, -100px);
+        }
+      }
+
+      @keyframes move-2 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        33% {
+          transform: translate(-100px, 80px);
+        }
+        66% {
+          transform: translate(100px, -40px);
+        }
+      }
+
+      @keyframes move-3 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(0, -130px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none">
+      <defs>
+        <filter id="gooey">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            0 0 0 20 -10"
+            result="goo"
+          />
+          <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="liquid-container">
+      <div class="blob one"></div>
+      <div class="blob two"></div>
+      <div class="blob three"></div>
+      <div class="center-core"></div>
+
+      <div class="ui-overlay">
+        <div class="count" id="percent">0%</div>
+      </div>
+    </div>
+
+    <script>
+      const percent = document.getElementById("percent");
+      let val = 0;
+
+      function update() {
+        if (val < 100) {
+          val++;
+          percent.innerText = val + "%";
+          setTimeout(update, val > 80 ? 80 : 30);
+        }
+      }
+
+      update();
+    </script>
+  </body>
+</html>

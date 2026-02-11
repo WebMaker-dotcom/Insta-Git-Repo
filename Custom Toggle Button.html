@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Neon Toggle Switch</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Inter, system-ui, sans-serif;
+      }
+      body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #1a1a1a
+      }
+      #toggle{
+        display: none;
+      }
+      .switch{
+        position: relative;
+        width: 120px;
+        height: 60px;
+        background: #333;
+        border-radius: 60px;
+        cursor: pointer;
+        box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.6), 
+        inset -5px -5px 10px rgba(255, 255, 255, 0.05);
+      }
+      .knob{
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(145deg, #444 #222);
+        border-radius: 50%;
+        transition: 0.3s ease;
+        box-shadow: 
+        5px 5px 10px rgba(0, 0, 0, 0.6),
+        -3px -3px 6px rgba(255, 255, 255, 0.05);
+      }
+      .text{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        font-weight: 600;
+        color: #888;
+        pointer-events: none;
+      }
+      .off{
+        right: 20px;
+      }
+      .on{
+        left: 22px;
+        opacity: 0;
+      }
+      #toggle:checked + .switch{
+        background: #0f172a;
+        box-shadow: 0 0 15px #38bdf8,
+        inset 0 0 40px #38bdf8;
+      }
+      #toggle:checked + .switch .knob{
+        left: 66px;
+        background: #38bdf8;
+        box-shadow: 
+        0 0 20px #38bdf8,
+        0 0 40px rgba(56, 189, 248, 0.7); 
+      }
+      #toggle:checked + .switch .off{
+        opacity: 0;
+      }
+      #toggle:checked + .switch .on{
+        opacity: 1;
+        color: #38bdf8;
+      }
+    </style>.
+  </head>
+  <body>
+    <input type="checkbox" id="toggle" />
+    <label for="toggle" class="switch">
+      <span class="knob"></span>
+      <span class="text off">OFF</span>
+      <span class="text on">ON</span>
+    </label>
+  </body>
+</html>

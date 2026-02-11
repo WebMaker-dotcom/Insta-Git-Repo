@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Neon Ribbon Button</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#070a12;
+    font-family:Poppins, sans-serif;
+}
+
+.button{
+    position:relative;
+    padding:22px 60px;
+    background:#0d111b;
+    border:2px solid rgba(255,255,255,0.15);
+    border-radius:60px;
+    color:#fff;
+    font-size:1.4rem;
+    font-weight:600;
+    cursor:pointer;
+    letter-spacing:1px;
+    overflow:hidden;
+    transition:0.35s ease;
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,0.15),
+        0 0 25px rgba(157, 78, 221, 0.4),
+        0 0 60px rgba(65, 190, 255, 0.3);
+}
+
+.button:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,#ff4dcc,#7dc9ff,#a066ff,#ff99cc);
+    opacity:0.35;
+    filter:blur(25px);
+    transition:0.7s ease;
+}
+
+.button:hover:before{
+    opacity:0.75;
+    filter:blur(40px);
+}
+
+.ribbon{
+    position:absolute;
+    top:-20%;
+    left:-120%;
+    width:250%;
+    height:150%;
+    background:linear-gradient(115deg,rgba(255,255,255,0.75),rgba(255,255,255,0));
+    transform:skewX(-25deg);
+    animation:slide 3s linear infinite;
+    mix-blend-mode:screen;
+}
+
+@keyframes slide{
+    0%{ left:-130%; }
+    50%{ left:20%; }
+    100%{ left:130%; }
+}
+
+.button:hover{
+    transform:translateY(-6px) scale(1.03);
+    border-color:rgba(255,255,255,0.35);
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,0.2),
+        0 0 40px rgba(157, 78, 221, 0.6),
+        0 0 85px rgba(65, 190, 255, 0.5);
+}
+</style>
+</head>
+<body>
+<button class="button">
+    <span class="ribbon"></span>
+    Follow
+</button>
+</body>
+</html>

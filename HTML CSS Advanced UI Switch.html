@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ON OFF Button</title>
+    <style>
+      body{
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #121212;
+      }
+      .switch{
+        position: relative;
+        display: inline-block;
+        width: 80px;
+        height: 40px;
+      }
+      .switch input{
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+    .slider{
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #2b2b2b;
+      border-radius: 40px;
+      transition: 0.35s cubic-bezier(0.75, 0, 0.25, 1);
+    }
+    .slider::before{
+      position: absolute;
+      content: "";
+      height: 32px;
+      width: 32px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      border-radius: 50px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      transition: 0.35s cubic-bezier(0.75, 0, 0.25, 1);
+    }
+    input:checked + .slider{
+      background: linear-gradient(45deg, #ff00cc, #3333ff, #00ffcc);
+      background-size: 300%;
+      animation: colorflow 2s linear infinite;
+      box-shadow: 0 0 20px rgba(51, 51, 255, 0.6);
+    }
+    input:checked + .slider::before{
+      transform: translateX(40px);
+      background-color: #fff;
+    }
+
+    @keyframes colorflow{
+      0%{ background-position: 0% 50%;}
+      50%{background-position: 100% 50%;}
+      100%{background-position: 0% 50%;}
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <label class="switch">
+        <input type="checkbox" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </body>
+</html>

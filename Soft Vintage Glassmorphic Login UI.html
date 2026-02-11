@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fdfbf7 0%, #d7ccc8 100%);
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 0;
+            opacity: 0.8;
+            animation: float 8s infinite alternate ease-in-out;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: #a1887f;
+            top: -100px;
+            left: -100px;
+        }
+
+        .shape-2 {
+            width: 350px;
+            height: 350px;
+            background: #cfd8dc;
+            bottom: -80px;
+            right: -80px;
+            animation-delay: -4s;
+        }
+
+        .glass-container {
+            position: relative;
+            width: 380px;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            text-align: center;
+            z-index: 1;
+            opacity: 0;
+            animation: slideUpFade 1s ease forwards;
+        }
+
+        .header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c1810;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #5d4037;
+            margin-bottom: 35px;
+        }
+
+        .input-group {
+            opacity: 0;
+            animation: fadeInStagger 0.8s ease forwards;
+        }
+
+        .input-group:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .input-group:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .input-box {
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(141, 110, 99, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1a1a1a;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-box input:focus {
+            background: #fff;
+            border-color: #8d6e63;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(141, 110, 99, 0.15);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6d4c41, #3e2723);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeInStagger 0.8s ease forwards 0.7s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(62, 39, 35, 0.3);
+            background: linear-gradient(135deg, #795548, #4e342e);
+        }
+
+        .footer-links {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            animation: fadeInStagger 0.8s ease forwards 0.9s;
+        }
+
+        .footer-links a {
+            color: #5d4037;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2c1810;
+            text-decoration: underline;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(30px) scale(1.05); }
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInStagger {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+
+    <div class="glass-container">
+        <div class="header">
+            <h2>Welcome Back</h2>
+            <p>Please enter your details</p>
+        </div>
+
+        <form>
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Sign In</button>
+
+            <div class="footer-links">
+                <a href="#">Forgot password?</a>
+                <a href="#">Create account</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

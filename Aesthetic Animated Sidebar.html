@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animated Sidebar</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        background: #f5eaff;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+      }
+
+      .glow {
+        position: fixed;
+        top: 50%;
+        left: -150px;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, #ffbff3, #c8f1ff, #ffefc7);
+        filter: blur(90px);
+        opacity: 0.7;
+        transform: translateY(-50%);
+        z-index: -1;
+      }
+
+      .toggle {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #ffbefa, #c9ecff, #ffe9b6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+        font-size: 24px;
+        color: #46245c;
+        transition: 0.3s ease;
+      }
+      .toggle:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 270px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(18px);
+        border-radius: 0 28px 28px 0;
+        box-shadow: 12px 0 35px rgba(0, 0, 0, 0.12);
+        padding: 55px 25px;
+        transition: 0.45s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 20px;
+        font-size: 18px;
+        text-decoration: none;
+        color: #3c2350;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.65);
+        transform: translateX(-30px);
+        opacity: 0;
+        animation: fadeIn 0.6s forwards;
+        transition: 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sidebar a i {
+        font-size: 20px;
+        display: inline-block;
+        transition: 0.4s ease;
+      }
+
+      .sidebar a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ffbefa, #c9ecff, #ffe9b6);
+        opacity: 0;
+        transition: 0.4s ease;
+      }
+
+      .sidebar a:hover {
+        transform: translateX(8px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .sidebar a:hover::before {
+        left: 0;
+        opacity: 1;
+      }
+
+      .sidebar a:hover i {
+        transform: translateX(6px);
+      }
+
+      @keyframes fadeIn {
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="glow"></div>
+
+    <div class="toggle" onclick="toggleSidebar()">☰</div>
+
+    <div class="sidebar" id="sidebar">
+      <a href="#"><i>🏠</i> Home</a>
+      <a href="#"><i>👤</i> Profile</a>
+      <a href="#"><i>📊</i> Dashboard</a>
+      <a href="#"><i>⚙️</i> Settings</a>
+      <a href="#"><i>❓</i> Help</a>
+    </div>
+
+    <script>
+      function toggleSidebar() {
+        document.getElementById("sidebar").classList.toggle("active");
+      }
+    </script>
+  </body>
+</html>

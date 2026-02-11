@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Product UI Card</title>
+    <style>
+      *{
+        margin: 0;padding: 0;
+        box-sizing: border-box;
+        font-family: 'Popins', sans-serif;
+      }
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(140deg, #ffecf2, #e8f2ff, #fff8e8);
+        background-size: 300% 300%;
+        animation: bgflow 12s ease infinite;
+      }
+      .product-card{
+        width: 340px;
+        padding: 26px;
+        border-radius: 28px;
+        text-align: center;
+        perspective: 120px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 
+        0 20px 40px rgba(255, 182, 220, 0.32),
+        0 8px 20px rgba(187, 163, 155, 0.26);
+        transition: transform .5s ease, box-shadow .5s ease;
+      }
+      .product-card:hover{
+        transform: rotateY(5deg) rotatex(4deg) scale(1.07);
+        box-shadow: 
+        0 25px 55px rgba(255, 182, 220, 0.32),
+        0 12px 20px rgba(187, 163, 155, 0.26);
+      }
+      .image-wrapper{
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        border-radius: 20px;
+        position:relative;
+
+      }
+      .image-wrapper::after{
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        background: linear-gradient(140deg,
+        rgba(255, 183, 218, 0.3),
+        rgba(169, 140, 255, 0.3));
+        opacity: 0;
+        transition: opacity .5s ease;
+      }
+      .product-card:hover .image-wrapper::after{
+        opacity: 1;
+
+      }
+      .image-wrapper img{
+        width: 100%;
+        height:100%;
+        object-fit: cover;
+        border-radius: 20px;
+        transform: translateZ(35px);
+        transition: transform .5s ease;
+        border: 3px solid rgba(255, 212, 240, 0.4);
+      }
+      .product-card:hover .image-wrapper img{
+        transform: translateZ(55px) scale(1.1);
+      }
+      .product-title{
+        color: #7b5cc7;
+        font-size: 1.8rem;
+        margin-top: 14px ;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+      }
+      .product-price{
+        color: #ff6ea9;
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+        font-weight: 600;
+      }
+      .buy-btn{
+        background: linear-gradient(135deg, #ff8ccf, #a88bff);
+        padding: 14px 28px;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 1.05rem;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 
+        0 10px 20px rgba(255, 143, 206, 0.35),
+        0 5px 14px rgba(170, 140, 255, 0.25);
+        transition: transform .2s ease, box-shadow .3s ease;
+      }
+      .buy-btn:hover{
+        transform: scale(1.12);
+        box-shadow: 
+        0  12px 26px rgba(255, 143, 206, 0.45),
+        0 8px 18px rgba(170, 140, 255, 0.35);
+      }
+      @keyframes bgflow{
+        0%{background-position: 0% 50%;}
+        50%{background-position: 100% 50%;}
+        100%{background-position: 0% 50%;}
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="product-card">
+      <div class="image-wrapper">
+        <img
+          src="https://www.gorideshoes.com/cdn/shop/files/trending-sneakers-for-men.jpg?v=1751608100&width=1920"
+          alt="Product Image"
+        />
+      </div>
+      <h2 class="product-title">Go Ride | VOV Shoes</h2>
+      <p class="product-price">$149.99</p>
+      <button class="buy-btn">Buy Now</button>
+    </div>
+  </body>
+</html>

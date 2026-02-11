@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liquid Filled Button</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0f0f1a, #181825);
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .wrapper {
+        perspective: 1000px;
+      }
+
+      
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .liquid-btn {
+        position: relative;
+        padding: 16px 50px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #ffffff;
+        border: none;
+        border-radius: 60px;
+        cursor: pointer;
+        overflow: hidden;
+
+        
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+       
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(138, 43, 226, 0.4);
+
+        animation: float 4s ease-in-out infinite;
+        transition: 0.4s ease;
+      }
+
+      .liquid-btn span {
+        position: relative;
+        z-index: 2;
+      }
+
+      
+      .liquid-btn::before {
+        content: "";
+        position: absolute;
+        left: -100%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 60px;
+        background: linear-gradient(90deg, #8a2be2, #00f0ff, #ff00c8);
+        transition: 0.7s ease;
+        z-index: 1;
+      }
+
+      .liquid-btn:hover::before {
+        left: 0;
+      }
+
+      
+      .liquid-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transform: skewX(-25deg);
+        animation: shine 5s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          left: -75%;
+        }
+        100% {
+          left: 125%;
+        }
+      }
+
+      .liquid-btn:hover {
+        box-shadow:
+          0 15px 40px rgba(0, 0, 0, 0.6),
+          0 0 30px rgba(0, 240, 255, 0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <button class="liquid-btn">
+        <span>Follow Me</span>
+      </button>
+    </div>
+    <script>
+      const button = document.querySelector(".liquid-btn");
+
+      button.addEventListener("click", function (e) {
+        const ripple = document.createElement("span");
+        ripple.classList.add("ripple");
+
+        const rect = button.getBoundingClientRect();
+        ripple.style.left = e.clientX - rect.left + "px";
+        ripple.style.top = e.clientY - rect.top + "px";
+
+        button.appendChild(ripple);
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    </script>
+  </body>
+</html>

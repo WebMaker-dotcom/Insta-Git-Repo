@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card</title>
+    <style>
+      *{
+        margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Segoe UI", sans-serif;
+      }
+      body{
+        background: #f5e9df;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .wrapper{
+        width: 750px;
+        height: 420px;
+        background: linear-gradient(135deg, #0057d9, #2a8af7);
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .circle{
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        filter: blur(8px);
+      }
+      .c1{top: 90px; left: 120px;}
+      .c2{bottom: 80px; right: 150px;}
+      .card{
+        width: 360px;
+        height: 220px;
+        background: linear-gradient(135deg, #6ca9ff, #9bcaff);
+        border-radius: 20px;
+        box-shadow: 0 25px 45px rgba(0,0,0,0.35);
+        padding: 30px;
+        color: white;
+        position: relative;
+      }
+      .top-row{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 35px ;
+      }
+      .chip{
+        width: 45px;
+        height: 35px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #d7d7d7, #9f9f9f);
+        box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
+      }
+      .logo{
+        font-size: 22px;
+        letter-spacing: 2px;
+        font-weight: 700;
+      }
+      .number{
+        font-size: 22px;
+        letter-spacing: 3px;
+        margin-bottom: 25px;
+      }
+      .holder{
+        font-size: 14px;
+        opacity: 0.8;
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="circle c1"></div>
+      <div class="circle c2"></div>
+
+      <div class="card">
+        <div class="top-row">
+          <div class="chip"></div>
+          <div class="logo">VISA</div>
+        </div>
+
+        <div class="number">1234 5678 9012 3456</div>
+        <div class="holder">Bhupendra Jogi</div>
+      </div>
+    </div>
+  </body>
+</html>

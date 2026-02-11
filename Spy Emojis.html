@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Field Emojis</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 35px;
+        background: #0f0f0f;
+        color: #fff;
+      }
+
+      .emoji-box {
+        display: flex;
+        gap: 35px;
+      }
+
+      .face {
+        width: 120px;
+        height: 120px;
+        background: #ffc85c;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 20px rgba(255, 200, 90, 0.4);
+      }
+
+      .eye {
+        width: 25px;
+        height: 25px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .eye.left {
+        left: 30px;
+        top: 40px;
+      }
+      .eye.right {
+        right: 30px;
+        top: 40px;
+      }
+
+      .pupil {
+        width: 12px;
+        height: 12px;
+        background: #000;
+        border-radius: 50%;
+        transition: 0.1s linear;
+      }
+
+      .closed {
+        height: 5px;
+        background: #000;
+        border-radius: 6px;
+      }
+
+      input {
+        padding: 14px 20px;
+        width: 300px;
+        border: none;
+        border-radius: 10px;
+        background: #1d1d1d;
+        font-size: 17px;
+        color: #fff;
+        outline: none;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="emoji-box">
+      <div class="face">
+        <div class="eye left"><div class="pupil"></div></div>
+        <div class="eye right"><div class="pupil"></div></div>
+      </div>
+
+      <div class="face">
+        <div class="eye left"><div class="pupil"></div></div>
+        <div class="eye right"><div class="pupil"></div></div>
+      </div>
+
+      <div class="face">
+        <div class="eye left"><div class="pupil"></div></div>
+        <div class="eye right"><div class="pupil"></div></div>
+      </div>
+    </div>
+
+    <input type="password" placeholder="Enter Password..." id="password" />
+
+    <script>
+      const pupils = document.querySelectorAll(".pupil");
+      const eyes = document.querySelectorAll(".eye");
+      const input = document.getElementById("password");
+
+      document.addEventListener("mousemove", (e) => {
+        pupils.forEach((pupil) => {
+          const rect = pupil.parentElement.getBoundingClientRect();
+          const x = e.clientX - (rect.left + rect.width / 2);
+          const y = e.clientY - (rect.top + rect.height / 2);
+          const angle = Math.atan2(y, x);
+          const moveX = Math.cos(angle) * 6;
+          const moveY = Math.sin(angle) * 6;
+          pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+      });
+
+      let stop;
+
+      input.addEventListener("input", () => {
+        eyes.forEach((eye) => {
+          eye.innerHTML = "";
+          eye.classList.add("closed");
+        });
+
+        clearTimeout(stop);
+
+        stop = setTimeout(() => {
+          eyes.forEach((eye) => {
+            eye.classList.remove("closed");
+            eye.innerHTML = "<div class='pupil'></div>";
+          });
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
