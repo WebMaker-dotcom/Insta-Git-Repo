@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Showcase</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f6f8fb;
+        --glass: rgba(255, 255, 255, 0.6);
+        --border: rgba(255, 255, 255, 0.8);
+        --text: #111827;
+        --muted: #6b7280;
+        --accent: #6366f1;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Inter, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #eef2ff, #fdf2f8, #ecfeff);
+      }
+
+      .panel {
+        width: 380px;
+        padding: 32px;
+        border-radius: 28px;
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        transition: 0.35s ease;
+      }
+
+      .panel:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 500;
+        border-radius: 100px;
+        background: rgba(99, 102, 241, 0.1);
+        color: var(--accent);
+        margin-bottom: 18px;
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+
+      .description {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+
+      .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .project {
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        font-size: 14px;
+        color: var(--text);
+        transition: 0.25s ease;
+      }
+
+      .project:hover {
+        background: #f9fafb;
+        transform: translateX(6px);
+      }
+
+      .btn {
+        display: block;
+        text-align: center;
+        padding: 14px;
+        border-radius: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        background: var(--accent);
+        color: #fff;
+        transition: 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #4f46e5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="panel">
+      <div class="badge">Project Showcase</div>
+
+      <div class="title">Frontend Experiments</div>
+
+      <div class="description">
+        A curated collection of UI builds, animations, and clean design
+        implementations.
+      </div>
+
+      <div class="project-list">
+        <div class="project">Animated Card UI</div>
+        <div class="project">Glassmorphism Landing</div>
+        <div class="project">Modern Dashboard</div>
+      </div>
+
+      <a href="https://github.com/WebMaker-dotcom/Insta-Git-Repo" target="_blank" class="btn">
+        Explore All Repositories
+      </a>
+    </div>
+  </body>
+</html>
