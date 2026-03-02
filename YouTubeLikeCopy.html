@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YT Like Animation Final</title>
+    <style>
+      body {
+        background-color: #0f0f0f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Roboto, Arial, sans-serif;
+      }
+
+      .yt-like-btn {
+        background-color: #272727;
+        border-radius: 18px;
+        border: 1px solid #444;
+        padding: 0 16px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.2s;
+      }
+
+      .yt-like-btn:hover {
+        background-color: #3f3f3f;
+      }
+
+      .icon-container {
+        position: relative;
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+
+      .thumb-outline,
+      .thumb-filled,
+      .wheel-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 24px;
+        height: 24px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .thumb-outline {
+        opacity: 1;
+        transition: opacity 0.1s;
+      }
+
+      .thumb-filled {
+        opacity: 0;
+        transform: scale(0.5);
+        transition:
+          transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+          opacity 0.2s;
+      }
+
+      .wheel-wrapper {
+        opacity: 0;
+      }
+
+      .wheel-svg {
+        width: 22px;
+        height: 22px;
+        z-index: 2;
+        position: relative;
+      }
+
+      .dust-container {
+        position: absolute;
+        bottom: 2px;
+        left: 5px;
+        width: 20px;
+        height: 10px;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .dust {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 50% 50% 0 0;
+        opacity: 0;
+        transform-origin: bottom center;
+      }
+
+      .dust-1 {
+        width: 14px;
+        height: 7px;
+        background-color: #ff0033;
+        left: 2px;
+      }
+
+      .dust-2 {
+        width: 10px;
+        height: 5px;
+        background-color: #ff007f;
+        left: 0px;
+      }
+
+      .like-count {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        user-select: none;
+      }
+
+      .yt-like-btn.animating .thumb-outline {
+        opacity: 0;
+      }
+
+      .yt-like-btn.animating .wheel-wrapper {
+        opacity: 1;
+      }
+
+      .yt-like-btn.animating .wheel-svg {
+        animation: rollTire 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+          forwards;
+      }
+
+      .yt-like-btn.animating .dust-1 {
+        animation: kickDust 0.5s ease-out forwards;
+      }
+
+      .yt-like-btn.animating .dust-2 {
+        animation: kickDust 0.6s ease-out 0.05s forwards;
+      }
+
+      .yt-like-btn.liked .thumb-outline {
+        opacity: 0;
+      }
+
+      .yt-like-btn.liked .thumb-filled {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .yt-like-btn.liked .wheel-wrapper {
+        opacity: 0;
+      }
+
+      @keyframes rollTire {
+        0% {
+          transform: translateX(-12px) rotate(-180deg) scale(0.8);
+          opacity: 1;
+        }
+        60% {
+          transform: translateX(2px) rotate(45deg) scale(1.1);
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(8px) rotate(90deg) scale(0.5);
+          opacity: 0;
+        }
+      }
+
+      @keyframes kickDust {
+        0% {
+          transform: scale(0) translateX(0px);
+          opacity: 1;
+        }
+        40% {
+          transform: scale(1.2) translateX(-6px);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(2) translateX(-12px);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="yt-like-btn" id="likeBtn">
+      <div class="icon-container">
+        <svg
+          class="thumb-outline"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.77 11h-4.23l1.52-4.94C16.38 5.03 15.54 4 14.38 4c-0.58 0-1.14 0.24-1.52 0.65L7 11H3v10h4h1h9.43c1.06 0 1.98-0.67 2.19-1.61l1.34-6C21.23 12.15 20.18 11 18.77 11zM7 20H4v-8h3V20zM19.98 13.17l-1.34 6C18.54 19.65 18.03 20 17.43 20H8v-8.61l5.6-6.06C13.79 5.12 14.08 5 14.38 5c0.26 0 0.5 0.11 0.63 0.3 0.07 0.1 0.15 0.26 0.09 0.47l-1.52 4.94L13.18 12h1.35h4.23c0.41 0 0.8 0.17 1.03 0.46C19.92 12.61 20.05 12.86 19.98 13.17z"
+            fill="currentColor"
+          />
+        </svg>
+
+        <svg
+          class="thumb-filled"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 11h3v10H3V11zm15.77-1h-4.23l1.52-4.94C16.38 5.03 15.54 4 14.38 4c-.58 0-1.14.24-1.52.65L7 11v10h10.43c1.06 0 1.98-.67 2.19-1.61l1.34-6c.34-1.51-.71-2.39-2.19-2.39z"
+          />
+        </svg>
+
+        <div class="wheel-wrapper">
+          <div class="dust-container">
+            <div class="dust dust-1"></div>
+            <div class="dust dust-2"></div>
+          </div>
+          <svg
+            class="wheel-svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+          >
+            <circle cx="12" cy="12" r="9" stroke-width="2.5"></circle>
+            <circle cx="12" cy="12" r="2" fill="currentColor"></circle>
+            <g stroke-width="1.5">
+              <line x1="12" y1="12" x2="12" y2="3" />
+              <line x1="12" y1="12" x2="19.79" y2="7.5" />
+              <line x1="12" y1="12" x2="19.79" y2="16.5" />
+              <line x1="12" y1="12" x2="12" y2="21" />
+              <line x1="12" y1="12" x2="4.21" y2="16.5" />
+              <line x1="12" y1="12" x2="4.21" y2="7.5" />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <span class="like-count" id="likeCount">166</span>
+    </button>
+
+    <script>
+      const likeBtn = document.getElementById("likeBtn");
+      const likeCountSpan = document.getElementById("likeCount");
+      let isLiked = false;
+      let count = 166;
+
+      likeBtn.addEventListener("click", () => {
+        if (!isLiked) {
+          likeBtn.classList.add("animating");
+          count++;
+
+          setTimeout(() => {
+            likeCountSpan.textContent = count;
+          }, 300);
+
+          setTimeout(() => {
+            likeBtn.classList.remove("animating");
+            likeBtn.classList.add("liked");
+            isLiked = true;
+          }, 600);
+        } else {
+          likeBtn.classList.remove("liked");
+          likeBtn.classList.remove("animating");
+          count--;
+          likeCountSpan.textContent = count;
+          isLiked = false;
+        }
+      });
+    </script>
+  </body>
+</html>
